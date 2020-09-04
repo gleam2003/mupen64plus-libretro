@@ -225,7 +225,7 @@ else ifneq (,$(findstring orangepi,$(platform)))
    LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined
    GLES = 1
    GL_LIB := -lGLESv2
-   CPUFLAGS += -marm -mfloat-abi=hard -mfpu=neon
+   CPUFLAGS += -g -marm -mfloat-abi=hard -mfpu=neon-vfpv4
    HAVE_NEON = 1
    WITH_DYNAREC=arm
    CPUFLAGS += -mcpu=cortex-a7
