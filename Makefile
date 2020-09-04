@@ -219,6 +219,18 @@ else ifneq (,$(findstring odroid,$(platform)))
 
    COREFLAGS += -DOS_LINUX
    ASFLAGS = -f elf -d ELF_TYPE
+# Orangepi
+else ifneq (,$(findstring orangepi,$(platform)))
+   TARGET := $(TARGET_NAME)_libretro.so
+   LDFLAGS += -shared -Wl,--version-script=$(LIBRETRO_DIR)/link.T -Wl,--no-undefined
+   GLES = 1
+   GL_LIB := -lGLESv2
+   CPUFLAGS += -marm -mfloat-abi=hard -mfpu=neon
+   HAVE_NEON = 1
+   WITH_DYNAREC=arm
+   CPUFLAGS += -mcpu=cortex-a7
+   COREFLAGS += -DOS_LINUX
+   ASFLAGS = -f elf -d ELF_TYPE
 # OS X
 else ifneq (,$(findstring osx,$(platform)))
    TARGET := $(TARGET_NAME)_libretro.dylib
